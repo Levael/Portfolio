@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="MobileOptimized" content="width">
+	<meta name="HandheldFriendly" content="true">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta charset="UTF-8">
+    <link rel="stylesheet" href="main.css">
+	<title>Portfolio</title>
+</head>
+
+<body>
+
+	<div id="main_wrapper">
+		<div id="info_section">
+			<div id="logo_and_links_section">
+				<div id="logo_section"></div>
+				<div id="links_section"></div>
+			</div>
+			<div id="description_section"></div>
+		</div>
+		<div id="projects_section">
+
+			<div id="game_canvas_wrapper" class="canvas_wrapper">  <!-- Is needed to show fps on top fullscreen -->
+	           <div id="fps_data"></div>
+	           <canvas id="game_3d"></canvas>
+			</div>
+
+			<div id="paint_canvas_wrapper" class="canvas_wrapper">
+	           <canvas id="paint_2d"></canvas>
+			</div>
+
+			<div id="deminer_1_canvas_wrapper" class="canvas_wrapper">
+	           <canvas id="deminer_1"></canvas>
+			</div>
+
+			<div id="deminer_2_canvas_wrapper" class="canvas_wrapper">
+	           <canvas id="deminer_2"></canvas>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- <h3 id="mini_instruction">Right click to start</h3> -->
+
+	<script src="/libs/three.min.js"></script>
+	<script src="/libs/PointerLockControls.js"></script>
+	<script src="/libs/GLTFLoader.js"></script>
+	<script src="/libs/fps.js"></script>
+	<script src="game.js"></script>
+	<script src="paint.js"></script>
+
+    <script type="text/javascript">
+		const canvas_standart_width_in_percent = 25;
+        window.onload = () => {
+            MAIN();
+        }
+
+        function MAIN() {
+            new SocketGame({
+                'canvas_id': 'game_3d',
+                'fps_div_id': 'fps_data',
+				'canvas_wrapper': 'game_canvas_wrapper',
+                'canvas_width_percent': canvas_standart_width_in_percent,
+                'canvas_height_percent': canvas_standart_width_in_percent
+            }).init({
+                'ip': 'localhost',
+                'port': 5001
+            });
+
+
+			new PaintGame({
+                'canvas_id': 'paint_2d',
+				'canvas_wrapper': 'paint_canvas_wrapper',
+                'canvas_width_percent': canvas_standart_width_in_percent,
+                'canvas_height_percent': canvas_standart_width_in_percent
+            }).init({
+                // 'ip': 'localhost',
+                // 'port': 5001
+            });
+        }
+    </script>
+
+</body>
+
+</html>
