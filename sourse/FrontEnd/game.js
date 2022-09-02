@@ -71,12 +71,12 @@ class SocketGame {
 
         this.cube_loader.setPath('Skyboxs/');
         this.texture_cube = this.cube_loader.load([
-            'right.png', // x+
-            'left.png', // x-
-            'top.png', // y+
-            'bottom.png', // y-
-            'front.png', // z+
-            'back.png' // z-
+            'right.png',    // x+
+            'left.png',     // x-
+            'top.png',      // y+
+            'bottom.png',   // y-
+            'front.png',    // z+
+            'back.png'      // z-
         ]);
 
         // SCENE
@@ -538,6 +538,7 @@ class SocketGame {
     }
 
     drawNewFrame(params = {}) {
+
         this.RenderPedestals();
 
         for (let player in this.players) {

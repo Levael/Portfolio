@@ -43,8 +43,8 @@ class PaintGame {
                 wrapper.msRequestFullscreen();
             }
 
-            console.log(window.screen.width);
-            console.log(window.screen.height);
+            // console.log(window.screen.width);
+            // console.log(window.screen.height);
 
             // console.log(window.innerWidth);
             // console.log(window.innerHeight);
