@@ -167,6 +167,7 @@ class SocketGame {
                 this.UpdScreenParams(window.innerWidth, window.innerHeight);
             } else {
                 // standart small canvas size
+                // 4 is 25% (change later)
                 this.UpdScreenParams(window.innerWidth / 4, window.innerHeight / 4);
             }
         });

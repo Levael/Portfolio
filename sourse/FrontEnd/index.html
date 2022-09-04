@@ -34,7 +34,7 @@
 
 			<!-- TO DO -->
 
-			<div id="deminer_1_canvas_wrapper" class="canvas_wrapper">
+			<!-- <div id="deminer_1_canvas_wrapper" class="canvas_wrapper">
 	           <canvas id="deminer_1"></canvas>
 			</div>
 
@@ -44,7 +44,7 @@
 
 			<div id="earthData_canvas_wrapper" class="canvas_wrapper">
 	           <canvas id="earthData"></canvas>
-			</div>
+			</div> -->
 
 			<div id="customEngine_canvas_wrapper" class="canvas_wrapper">
 	           <canvas id="customEngine"></canvas>
@@ -61,6 +61,8 @@
 	<script src="/libs/fps.js"></script>
 	<script src="game.js"></script>
 	<script src="paint.js"></script>
+	<script src="engine.js"></script>
+
 
     <script type="text/javascript">
 		const canvas_standart_width_in_percent = 25;
@@ -86,9 +88,13 @@
 				'canvas_wrapper': 'paint_canvas_wrapper',
                 'canvas_width_percent': canvas_standart_width_in_percent,
                 'canvas_height_percent': canvas_standart_width_in_percent
-            }).init({
-                // 'ip': 'localhost',
-                // 'port': 5001
+            }).init();
+
+			new Engine3D({
+                'canvas_id': 'customEngine',
+				'canvas_wrapper': 'customEngine_canvas_wrapper',
+                'canvas_width_percent': canvas_standart_width_in_percent,
+                'canvas_height_percent': canvas_standart_width_in_percent
             });
         }
     </script>
