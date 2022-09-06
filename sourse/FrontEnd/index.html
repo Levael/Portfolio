@@ -65,7 +65,6 @@
 
 
     <script type="text/javascript">
-		const canvas_standart_width_in_percent = 25;
         window.onload = () => {
             MAIN();
         }
@@ -90,7 +89,7 @@
 			new Engine3D({
                 'canvas_id': 'customEngine',
 				'canvas_wrapper': 'customEngine_canvas_wrapper'
-            });
+            }).init();
         }
     </script>
 

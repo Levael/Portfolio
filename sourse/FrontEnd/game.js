@@ -13,7 +13,7 @@ class SocketGame {
         this.canvas             = document.querySelector(`#${settings.canvas_id}`);
         this.canvas_wrapper     = document.querySelector(`#${settings.canvas_wrapper}`);
         this.icon_width         = this.canvas.offsetWidth;      // gets width and height from css, after that reinitialize them as needed
-        this.icon_height        = this.canvas.offsetHeight;
+        this.icon_height        = this.canvas.offsetHeight;     // maybe later upd this values on every screen resize
 
         this.config = {
             shadows:            true,

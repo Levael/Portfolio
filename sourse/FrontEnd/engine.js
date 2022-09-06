@@ -6,14 +6,10 @@ class Engine3D {
 
         this.full_screen_mode = false;
 
-        this.canvas_wrapper     = document.querySelector(`#${settings.canvas_wrapper}`);
+        this.canvas_wrapper   = document.querySelector(`#${settings.canvas_wrapper}`);
 
-		this.icon_width         = this.canvas.offsetWidth;      // gets width and height from css, after that reinitialize them as needed
-        this.icon_height        = this.canvas.offsetHeight;
-
-		console.log(this.icon_width, 1);
-        // this.icon_width         = window.innerWidth / (100 / settings.canvas_width_percent)     || 300;     // canvas on page (not fullsized)
-        // this.icon_height        = window.innerHeight / (100 / settings.canvas_height_percent)   || 200;
+		this.icon_width       = this.canvas.offsetWidth;      // gets width and height from css, after that reinitialize them as needed
+        this.icon_height      = this.canvas.offsetHeight;
 
 		// width, height, tanX, tanY
 
@@ -91,7 +87,7 @@ class Engine3D {
 		};
 
 		// document.body.appendChild(this.canvas);
-		this.updCanvasSize(this.icon_width, this.icon_height);
+		// this.updCanvasSize(this.icon_width, this.icon_height);
 		this.cubeInit();
 
 		this.canvas.requestPointerLock =
@@ -109,10 +105,15 @@ class Engine3D {
             if (this.full_screen_mode) {
                 this.updCanvasSize();
             } else {
-                // standart small canvas size
-                this.updCanvasSize(window.innerWidth / 4, window.innerHeight / 4);
+				this.updCanvasSize(this.icon_width, this.icon_height);
             }
         });
+	}
+
+	init () {
+		this.updCanvasSize(this.icon_width, this.icon_height);		// doesn't work, idk why
+		this.animate = true;
+		this.startAnimation();
 	}
 
 	// ENVIROMENTAL FUNCTIONS =================================================
@@ -128,6 +129,8 @@ class Engine3D {
 	}
 
 	logInTo_3DMode () {
+		if (document.pointerLockElement == this.canvas) return;
+
 		console.log('loged in to 3D mode');
         this.full_screen_mode = true;
 
@@ -137,8 +140,8 @@ class Engine3D {
 
 		this.canvas.requestPointerLock();
 		this.canvas.requestFullscreen();
-		this.animate = true;
-		this.startAnimation();
+		// this.animate = true;
+		// this.startAnimation();
 	}
 
 	logOutFrom_3DMode () {
@@ -146,7 +149,7 @@ class Engine3D {
             this.full_screen_mode = false;
 
 			this.canvas.removeEventListener('mousemove', this.canvas.fn);
-			this.animate = false;
+			// this.animate = false;
             this.updCanvasSize(this.icon_width, this.icon_height);
 
 			console.log('loged out from 3D mode');
