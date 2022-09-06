@@ -17,8 +17,10 @@ class PaintGame {
 
 	init () {
         this.ctx = this.canvas.getContext("2d");
-        this.canvas.width = window.innerWidth / (100 / this.percent_width)     || 300;
-        this.canvas.height = window.innerHeight / (100 / this.percent_height)  || 200;
+        this.icon_width         = this.canvas.offsetWidth;      // gets width and height from css, after that reinitialize them as needed
+        this.icon_height        = this.canvas.offsetHeight;
+        // this.canvas.width = window.innerWidth / (100 / this.percent_width)     || 300;
+        // this.canvas.height = window.innerHeight / (100 / this.percent_height)  || 200;
         this.ctx.lineWidth = this.radius * 2;
         this.ctx.strokeStyle = this.pen_color;
 
@@ -59,13 +61,13 @@ class PaintGame {
             // console.log(this.canvas.height);
         });
 
-        console.log(window.screen.width);
-        console.log(window.screen.height);
+        // console.log(window.screen.width);
+        // console.log(window.screen.height);
 
-        document.addEventListener("fullscreenchange", function () {
-            console.log(window.screen.width);
-            console.log(window.screen.height);
-        }, false);
+        // document.addEventListener("fullscreenchange", function () {
+        //     // console.log(window.screen.width);
+        //     // console.log(window.screen.height);
+        // }, false);
 
 
         this.ClearScreen();

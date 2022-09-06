@@ -12,8 +12,8 @@ class SocketGame {
 
         this.canvas             = document.querySelector(`#${settings.canvas_id}`);
         this.canvas_wrapper     = document.querySelector(`#${settings.canvas_wrapper}`);
-        this.icon_width         = window.innerWidth / (100 / settings.canvas_width_percent)     || 300;     // canvas on page (not fullsized)
-        this.icon_height        = window.innerHeight / (100 / settings.canvas_height_percent)   || 200;
+        this.icon_width         = this.canvas.offsetWidth;      // gets width and height from css, after that reinitialize them as needed
+        this.icon_height        = this.canvas.offsetHeight;
 
         this.config = {
             shadows:            true,
@@ -166,9 +166,7 @@ class SocketGame {
             if (this.full_screen_mode) {
                 this.UpdScreenParams(window.innerWidth, window.innerHeight);
             } else {
-                // standart small canvas size
-                // 4 is 25% (change later)
-                this.UpdScreenParams(window.innerWidth / 4, window.innerHeight / 4);
+                this.UpdScreenParams(this.icon_width, this.icon_height);
             }
         });
 
