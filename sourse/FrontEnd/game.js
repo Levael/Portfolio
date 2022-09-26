@@ -51,6 +51,9 @@ class SocketGame {
         this.canvas.addEventListener('click', (e) => {
             e.preventDefault();
             this.controls.lock();
+
+            // start playing background music
+            this.positional_sound.play();
             // this.ZoomInAnimation();
         });
 
@@ -65,6 +68,7 @@ class SocketGame {
 
         this.cube_loader = new THREE.CubeTextureLoader();
         this.gltf_loader = new THREE.GLTFLoader();
+        this.audio_loader = new THREE.AudioLoader();
         // this.basic_texture_loader = new THREE.TextureLoader();
 
         // Skybox
@@ -110,6 +114,7 @@ class SocketGame {
 
         this.controls.addEventListener('unlock', () => {
             this.full_screen_mode = false;
+            this.positional_sound.stop();
 
             this.UpdScreenParams(this.icon_width, this.icon_height);
         });
@@ -138,6 +143,33 @@ class SocketGame {
     };
 
     // MAKE OBJECTS
+
+    CreateAudioMesh () {
+        this.audio_listener = new THREE.AudioListener();
+        // console.log(this.audio_listener);
+        this.camera.add(this.audio_listener);
+
+        // create the PositionalAudio object (passing in the listener)
+        this.positional_sound = new THREE.PositionalAudio(this.audio_listener);
+
+        // load a sound and set it as the PositionalAudio object's buffer
+        this.audio_loader.load('audio/test.mp3', (buffer) => {
+        	this.positional_sound.setBuffer(buffer);
+        	this.positional_sound.setRefDistance( 10 );
+        	// this.positional_sound.play();   // can play only after user interaction - click on canvas
+        });
+
+        // create an object for the sound to play from
+        let sphere = new THREE.SphereGeometry( 2, 3, 16);
+        let material = new THREE.MeshPhongMaterial( { color: 0xff2200 } );
+        let mesh = new THREE.Mesh( sphere, material );
+        this.scene.add( mesh );
+
+        // finally add the sound to the mesh
+        mesh.add( this.positional_sound );
+    }
+
+
 
     CreateCamera () {
         return new THREE.PerspectiveCamera(
@@ -305,6 +337,7 @@ class SocketGame {
             this.CreateGrassBush(4),	// grass bush
             this.FirstCustomShader(),	// cube-sphere
             this.SecondCustomShader(),	// explozion sphere
+            this.CreateAudioMesh(),	    // audio test
             // this.TestCustomShader(),	// for tests
         ];
 
